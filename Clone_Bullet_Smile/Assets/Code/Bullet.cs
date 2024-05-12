@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -7,7 +6,7 @@ public class Bullet : MonoBehaviour
 
     private float speed;
     private int damage;
-    
+
     private Vector3 lastPos;
 
     private void Awake()
@@ -25,6 +24,7 @@ public class Bullet : MonoBehaviour
             {
                 health.ChangeAmount(damage);
             }
+
             Destroy(gameObject);
         }
 

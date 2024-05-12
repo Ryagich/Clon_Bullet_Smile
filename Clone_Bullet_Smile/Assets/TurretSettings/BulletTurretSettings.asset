@@ -19,7 +19,7 @@ MonoBehaviour:
   <OffsetToRotation>k__BackingField: 0
   <TimeToLoseTarget>k__BackingField: 2
   <RotateHoldTime>k__BackingField: 0.5
-  <RotateSpeed>k__BackingField: 2
+  <RotateSpeed>k__BackingField: 5
   <ShootAngle>k__BackingField: 25
   <ShootTime>k__BackingField: 0.2
   <ShootCheckTime>k__BackingField: 0.2

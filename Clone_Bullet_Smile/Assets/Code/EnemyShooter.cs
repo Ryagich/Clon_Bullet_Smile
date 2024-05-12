@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEditor;
-using UnityEngine.Serialization;
 
 public class EnemyShooter : MonoBehaviour
 {
@@ -13,88 +9,63 @@ public class EnemyShooter : MonoBehaviour
 
     [SerializeField] private TurretSettings _settings;
 
-    private bool shooting;
     private bool characterVisibility;
-    private Coroutine shootingCor;
+    private Coroutine shootingCoroutine;
 
     private void Start()
     {
-        StartCoroutine(Checking());
+        StartCoroutine(UpdateShootStateCoroutine());
     }
 
-    public void ChangeVisibility(bool visibility)
+    public void ChangeCharacterVisibility(bool visibility)
     {
         characterVisibility = visibility;
         if (!visibility)
         {
-            StopShooting();
+            StopShootCoroutine();
         }
     }
 
-    private IEnumerator Checking()
+    private IEnumerator UpdateShootStateCoroutine()
     {
         while (true)
         {
             if (!Target.Instance.Health.Alive)
             {
-                StopShooting();
+                StopShootCoroutine();
                 break;
             }
-            var targetInRadius = CheckFieldOfView();
-            if (targetInRadius && characterVisibility)
+            var targetInFov = FOVUtils.IsInFOV(transform, Target.Instance.transform.position,
+                _settings.Radius, _settings.ShootAngle);
+            if (targetInFov && characterVisibility)
             {
-                if (shootingCor == null)
-                {
-                    shootingCor = StartCoroutine(Shooting());
-                }
+                shootingCoroutine ??= StartCoroutine(ShootCoroutine());
             }
             else
             {
-                StopShooting();
+                StopShootCoroutine();
             }
 
             yield return new WaitForSeconds(_settings.ShootCheckTime);
         }
     }
 
-    private void StopShooting()
+    private void StopShootCoroutine()
     {
-        if (shooting)
+        if (shootingCoroutine != null)
         {
-            shooting = false;
-            StopCoroutine(shootingCor);
+            StopCoroutine(shootingCoroutine);
             StopShoot?.Invoke();
-            shootingCor = null;
+            shootingCoroutine = null;
         }
     }
 
-    private IEnumerator Shooting()
+    private IEnumerator ShootCoroutine()
     {
-        shooting = true;
         while (true)
         {
             Shoot?.Invoke();
             yield return new WaitForSeconds(_settings.ShootTime);
         }
-    }
-
-    private bool CheckFieldOfView()
-    {
-        var targetPos = Target.Instance.transform.position;
-        var pos = transform.position;
-        var distance = Vector3.Distance(targetPos, pos);
-        if (distance > _settings.Radius)
-        {
-            return false;
-        }
-
-        var dirToTarget = targetPos - pos;
-        var inFOVCondition = (Vector3.Angle(transform.right, dirToTarget) < _settings.ShootAngle / 2);
-        if (!inFOVCondition)
-        {
-            return false;
-        }
-
-        return true;
     }
 }

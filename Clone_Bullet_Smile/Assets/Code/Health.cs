@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,7 +7,7 @@ public class Health : MonoBehaviour
     public UnityEvent<int> AmountChanged;
 
     public bool Alive { get; private set; } = true;
-    [SerializeField, Min(1)] private int _amount;
+    [SerializeField] [Min(1)] private int _amount;
 
     private int amount;
 

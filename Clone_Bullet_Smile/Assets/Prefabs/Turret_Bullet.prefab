@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bfa0004ea83bde44957690b0c2a551f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetIn:
+  TargetEnter:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3579026384785383055}
@@ -205,7 +205,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  TargetOut:
+  TargetStay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3579026384785383055}
+        m_TargetAssemblyTypeName: EnemyLookAtCharacter, Assembly-CSharp
+        m_MethodName: CheckCanSeeTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  TargetExit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4993207442102806824}
@@ -279,7 +294,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 5497467678665169842}
         m_TargetAssemblyTypeName: EnemyShooter, Assembly-CSharp
-        m_MethodName: ChangeVisibility
+        m_MethodName: ChangeCharacterVisibility
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -306,7 +321,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 5497467678665169842}
         m_TargetAssemblyTypeName: EnemyShooter, Assembly-CSharp
-        m_MethodName: ChangeVisibility
+        m_MethodName: ChangeCharacterVisibility
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -481,20 +496,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions:
-  - {x: 25, y: -5.5, z: 0}
-  - {x: 27.431076, y: -19.287308, z: 0}
-  - {x: 31.137196, y: -18.083117, z: 0}
-  - {x: 34.36783, y: -15.904027, z: 0}
-  - {x: 36.872673, y: -12.91887, z: 0}
-  - {x: 38.457664, y: -9.358923, z: 0}
-  - {x: 39, y: -5.5, z: 0}
-  - {x: 38.457664, y: -1.641077, z: 0}
-  - {x: 36.872673, y: 1.91887, z: 0}
-  - {x: 34.36783, y: 4.904027, z: 0}
-  - {x: 31.137196, y: 7.0831165, z: 0}
-  - {x: 27.431076, y: 8.287308, z: 0}
-  - {x: 25, y: -5.5, z: 0}
+  m_Positions: []
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -516,7 +518,7 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 0, b: 0, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 0, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -552,5 +554,5 @@ LineRenderer:
     generateLightingData: 0
   m_MaskInteraction: 0
   m_UseWorldSpace: 1
-  m_Loop: 0
+  m_Loop: 1
   m_ApplyActiveColorSpace: 1

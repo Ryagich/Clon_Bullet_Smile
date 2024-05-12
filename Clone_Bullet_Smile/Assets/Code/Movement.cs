@@ -6,7 +6,8 @@ public class Movement : MonoBehaviour
 {
     public UnityEvent Started;
     public UnityEvent Canceled;
-    public Vector3 startPos { get; private set; }
+    
+    public Vector3 StartPosition { get; private set; }
 
     [SerializeField] private MovementCalculations _calculations;
     [SerializeField] private Rigidbody _rb;
@@ -17,25 +18,25 @@ public class Movement : MonoBehaviour
     {
         canMove = newState;
     }
+
     public void OnTryMove(InputAction.CallbackContext context)
     {
         if (!canMove)
         {
             return;
         }
+
         switch (context.phase)
         {
             case InputActionPhase.Started:
-                startPos = _calculations.GetMouseScreenPosition();
+                StartPosition = _calculations.GetMouseScreenPosition();
                 _rb.velocity = Vector3.zero;
                 Started?.Invoke();
                 break;
             case InputActionPhase.Canceled:
-                _calculations.Move(_rb, startPos, _calculations.GetMouseScreenPosition());
+                _calculations.Move(_rb, StartPosition, _calculations.GetMouseScreenPosition());
                 Canceled?.Invoke();
                 break;
         }
     }
-
-    
 }

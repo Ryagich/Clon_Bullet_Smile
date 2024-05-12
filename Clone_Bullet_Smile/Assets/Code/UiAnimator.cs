@@ -1,8 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class UiAnimator : MonoBehaviour
 {

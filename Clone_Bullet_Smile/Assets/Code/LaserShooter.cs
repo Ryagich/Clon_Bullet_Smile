@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class LaserShooter : MonoBehaviour
 {
     public UnityEvent EndLaser;
+    
     [SerializeField] private TurretSettings _settings;
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private Transform _parent;
@@ -21,18 +21,16 @@ public class LaserShooter : MonoBehaviour
 
         if (Physics.Raycast(parentPos, _parent.transform.right, out var hit, _settings.Radius, _layerMask))
         {
-            Debug.DrawRay(parentPos, _parent.transform.right, Color.red, 4);
             _lineRenderer.SetPosition(1, hit.point);
 
-            var health = hit.transform.GetComponent<Health>();
-            if (health)
+            if (hit.transform.TryGetComponent(out Health health))
             {
                 health.ChangeAmount(-_settings.Damage);
             }
         }
         else
         {
-            _lineRenderer.SetPosition(1, transform.position + _parent.transform.right.normalized *  _settings.Radius);
+            _lineRenderer.SetPosition(1, transform.position + _parent.transform.right.normalized * _settings.Radius);
         }
 
         StartCoroutine(PutOutLaser());

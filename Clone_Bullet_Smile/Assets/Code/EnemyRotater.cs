@@ -5,24 +5,31 @@ using UnityEngine.Events;
 public class EnemyRotater : MonoBehaviour
 {
     public UnityEvent Rotate;
-    
+
     [SerializeField] private TurretSettings _settings;
 
-    private Coroutine rotatingToTarget;
-    private Coroutine rotating;
-    private Coroutine losingTarget;
+    private Coroutine currentCoroutine;
     private bool isFollowing;
     private float speed;
 
     private void Start()
     {
-        GetRandomDirection();
-        speed = _settings.RotateSpeed;
+        StartRandomRotation();
+        EnableRotation(true);
     }
 
-    public void ChangeSpeed(bool state)
+    public void EnableRotation(bool state)
     {
         speed = state ? _settings.RotateSpeed : 0;
+    }
+
+    private void SetCurrentCoroutine(IEnumerator coroutine)
+    {
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+        currentCoroutine = StartCoroutine(coroutine);
     }
 
     public void FollowTarget()
@@ -31,42 +38,29 @@ public class EnemyRotater : MonoBehaviour
         {
             return;
         }
-
         isFollowing = true;
-        if (rotating != null)
-        {
-            StopCoroutine(rotating);
-            rotating = null;
-        }
 
-        if (losingTarget != null)
-        {
-            StopCoroutine(losingTarget);
-            losingTarget = null;
-        }
-
-        rotatingToTarget = StartCoroutine(RotatingToTarget());
+        SetCurrentCoroutine(RotatingToTarget());
     }
 
-    private void GetRandomDirection()
+    private void StartRandomRotation()
     {
-        rotating = StartCoroutine(Rotating(Quaternion.Euler(0, 0, Random.Range(0, 359))));
+        SetCurrentCoroutine(Rotating(Quaternion.Euler(0, 0, Random.Range(0, 359))));
     }
 
-    private IEnumerator Rotating(Quaternion targetrotation)
+    private IEnumerator Rotating(Quaternion targetRotation)
     {
-        while (Quaternion.Angle(transform.rotation, targetrotation) > _settings.OffsetToRotation)
+        while (Quaternion.Angle(transform.rotation, targetRotation) > _settings.OffsetToRotation)
         {
-            var t = Time.fixedDeltaTime * speed;
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, t);
+            var t = Time.deltaTime * speed;
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, t);
             Rotate?.Invoke();
-            yield return new WaitForSeconds(Time.fixedDeltaTime);
+            yield return null;
         }
 
         yield return new WaitForSeconds(_settings.RotateHoldTime);
 
-        rotating = null;
-        GetRandomDirection();
+        StartRandomRotation();
     }
 
     private IEnumerator RotatingToTarget()
@@ -74,31 +68,24 @@ public class EnemyRotater : MonoBehaviour
         while (true)
         {
             var targetDirection = Target.Instance.transform.position - transform.position;
-            transform.right = Vector3.Lerp(transform.right, targetDirection, speed * Time.deltaTime);
+            transform.right = Vector3.MoveTowards(transform.right, targetDirection, speed * Time.deltaTime);
             Rotate?.Invoke();
-            yield return new WaitForSeconds(Time.fixedDeltaTime);
+            yield return null;
         }
     }
 
     public void LoseTarget()
     {
-        isFollowing = false;
-        if (rotatingToTarget != null)
+        if (isFollowing)
         {
-            StopCoroutine(rotatingToTarget);
-            rotatingToTarget = null;
-        }
-
-        if (losingTarget == null && rotating == null)
-        {
-            losingTarget = StartCoroutine(LosingTarget());
+            isFollowing = false;
+            SetCurrentCoroutine(LosingTarget());
         }
     }
 
     private IEnumerator LosingTarget()
     {
         yield return new WaitForSeconds(_settings.TimeToLoseTarget);
-        losingTarget = null;
-        GetRandomDirection();
+        StartRandomRotation();
     }
 }

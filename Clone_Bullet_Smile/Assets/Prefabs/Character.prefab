@@ -385,9 +385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7775ff170bbefb04480368795aee006d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacles: {fileID: 0}
-  line: {fileID: 2241576235208030901}
-  maxPhysicsFrameIterations: 20
+  _obstacles: {fileID: 0}
+  _line: {fileID: 2241576235208030901}
+  _maxPhysicsFrameIterations: 100
   _predict: {fileID: 6477179506315371267, guid: de8ea6cd4f022204884ea5c7dd4ea6de, type: 3}
   _movement: {fileID: 4513757692597305422}
   _calculations: {fileID: 8669015863052634568}
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea4b8a782e3fba488f37679ea582081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.3
+  _animationTime: 1
   _minScale: 0.05
 --- !u!114 &8669015863052634568
 MonoBehaviour:
@@ -461,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8678b9288665a4c9a313ebeba3f91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainCamera: {fileID: 0}
   _power: 2
 --- !u!114 &3305666056319582978
 MonoBehaviour:
@@ -503,7 +504,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 9062970433292282933}
         m_TargetAssemblyTypeName: TimeController, Assembly-CSharp
-        m_MethodName: ChangeTimeControlState
+        m_MethodName: EnableTimeControl
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -565,7 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165af533a2555d6438129eaab56f3eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: {fileID: 3305666056319582978}
+  <Health>k__BackingField: {fileID: 3305666056319582978}
 --- !u!33 &8209164279772046823
 MeshFilter:
   m_ObjectHideFlags: 0

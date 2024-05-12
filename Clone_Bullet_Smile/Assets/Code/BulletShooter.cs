@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletShooter : MonoBehaviour
@@ -13,6 +11,6 @@ public class BulletShooter : MonoBehaviour
     public void Shoot()
     {
         var bullet = Instantiate(_pref, _parent.position, _parent.rotation);
-        bullet.SetValues(_speed, -_settings.Damage,_bulletLiveTime);
+        bullet.SetValues(_speed, -_settings.Damage, _bulletLiveTime);
     }
 }
