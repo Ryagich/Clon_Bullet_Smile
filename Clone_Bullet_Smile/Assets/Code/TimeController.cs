@@ -11,9 +11,30 @@ public class TimeController : MonoBehaviour
     private float target = 1f;
     private Coroutine coroutine;
     private float factor;
-
+    private bool canControlTime;
+    
+    public void ChangeTimeControlState(bool newState)
+    {
+        canControlTime = newState;
+        if (!newState)
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+                coroutine = null;
+            }
+            target = 1f;
+            Time.timeScale = 1;
+        }
+    } 
+    
     public void OnTryChangeTimeScale(InputAction.CallbackContext context)
     {
+        if (!canControlTime)
+        {
+            return;
+        }
+        
         switch (context.phase)
         {
             case InputActionPhase.Started:

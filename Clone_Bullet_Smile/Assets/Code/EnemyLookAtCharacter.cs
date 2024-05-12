@@ -14,7 +14,7 @@ public class EnemyLookAtCharacter : MonoBehaviour
     public void CheckCanSeeTarget()
     {
         if (Physics.Linecast(_fov.ShootPoint.position,_fov.Target.position,out var hit,_layerMask)
-            && hit.transform && hit.transform == _fov.Target)
+            && hit.transform && hit.transform == _fov.Target && _fov.Target.GetComponent<Health>().Alive)
         {
             SeeTarget?.Invoke();
         }

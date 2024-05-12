@@ -1,27 +1,34 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private LayerMask _targetMask;
+
     private float speed;
     private int damage;
+    
+    private Vector3 lastPos;
+
+    private void Awake()
+    {
+        lastPos = transform.position;
+    }
 
     private void FixedUpdate()
     {
         transform.Translate(Vector3.right * (speed * Time.deltaTime));
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        var health = other.transform.GetComponent<Health>();
-        if (health)
+        if (Physics.Linecast(lastPos, transform.position, out var hit, _targetMask))
         {
-            health.ChangeAmount(-damage);
+            var health = hit.transform.GetComponent<Health>();
+            if (health)
+            {
+                health.ChangeAmount(-damage);
+            }
+            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
+        lastPos = transform.position;
     }
 
     public void SetValues(float speed, int damage, float liveTime)

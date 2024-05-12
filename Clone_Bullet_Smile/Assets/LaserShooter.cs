@@ -33,7 +33,7 @@ public class LaserShooter : MonoBehaviour
         }
         else
         {
-            _lineRenderer.SetPosition(1, new Vector3(parentPos.x, parentPos.y, parentPos.z + _fov.Radius));
+            _lineRenderer.SetPosition(1, transform.position + _parent.transform.right.normalized * _fov.Radius);
         }
 
         StartCoroutine(PutOutLaser());

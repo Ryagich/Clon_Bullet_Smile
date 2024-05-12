@@ -34,24 +34,44 @@
             "id": "c66a7054-d60a-4372-90c2-833be11b9d42",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
+                    "name": "Click",
+                    "type": "PassThrough",
                     "id": "1e191b04-eef6-47b1-8542-ab57b6ce0d2c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Point",
+                    "type": "PassThrough",
+                    "id": "5a8874cb-54f0-48e2-832b-a211bad58a2a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "ea97a736-2c70-4989-a1e7-67fbda4f77fb",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "61132003-a672-4fd6-b971-e954653d7cc2",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -46,7 +46,7 @@ public class EnemyShooter : MonoBehaviour
                     shootingCor = StartCoroutine(Shooting());
                 }
             }
-            else 
+            else
             {
                 StopShooting();
             }

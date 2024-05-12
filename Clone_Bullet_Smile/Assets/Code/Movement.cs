@@ -11,8 +11,18 @@ public class Movement : MonoBehaviour
     [SerializeField] private MovementCalculations _calculations;
     [SerializeField] private Rigidbody _rb;
 
+    private bool canMove;
+
+    public void ChangeMovementState(bool newState)
+    {
+        canMove = newState;
+    }
     public void OnTryMove(InputAction.CallbackContext context)
     {
+        if (!canMove)
+        {
+            return;
+        }
         switch (context.phase)
         {
             case InputActionPhase.Started:
