@@ -41,12 +41,9 @@ public class TimeController : MonoBehaviour
     {
         while (Time.timeScale != target)
         {
-            var value = _speed;
-            Time.timeScale = Mathf.Clamp(Time.timeScale + (_speed * factor),
-                _minScale, 1);
-            yield return new WaitForSeconds(value);
+            Time.timeScale = Mathf.Clamp(Time.timeScale + (_speed * factor), _minScale, 1);
+            yield return null;
         }
-
         coroutine = null;
     }
 }
