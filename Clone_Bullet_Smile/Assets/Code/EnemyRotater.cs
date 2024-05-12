@@ -6,11 +6,7 @@ public class EnemyRotater : MonoBehaviour
 {
     public UnityEvent Rotate;
     
-    [SerializeField] private EnemyFoV _fov;
-    [SerializeField] private float _offsetToRotation;
-    [SerializeField] private float _timeToLoseTarget;
-    [SerializeField] private float _holdTime;
-    [SerializeField] private float _speed = 5f;
+    [SerializeField] private TurretSettings _settings;
 
     private Coroutine rotatingToTarget;
     private Coroutine rotating;
@@ -21,12 +17,12 @@ public class EnemyRotater : MonoBehaviour
     private void Start()
     {
         GetRandomDirection();
-        speed = _speed;
+        speed = _settings.RotateSpeed;
     }
 
     public void ChangeSpeed(bool state)
     {
-        speed = state ? _speed : 0;
+        speed = state ? _settings.RotateSpeed : 0;
     }
 
     public void FollowTarget()
@@ -59,7 +55,7 @@ public class EnemyRotater : MonoBehaviour
 
     private IEnumerator Rotating(Quaternion targetrotation)
     {
-        while (Quaternion.Angle(transform.rotation, targetrotation) > _offsetToRotation)
+        while (Quaternion.Angle(transform.rotation, targetrotation) > _settings.OffsetToRotation)
         {
             var t = Time.fixedDeltaTime * speed;
             transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, t);
@@ -67,7 +63,7 @@ public class EnemyRotater : MonoBehaviour
             yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
 
-        yield return new WaitForSeconds(_holdTime);
+        yield return new WaitForSeconds(_settings.RotateHoldTime);
 
         rotating = null;
         GetRandomDirection();
@@ -77,7 +73,7 @@ public class EnemyRotater : MonoBehaviour
     {
         while (true)
         {
-            var targetDirection = _fov.Target.position - transform.position;
+            var targetDirection = Target.Instance.transform.position - transform.position;
             transform.right = Vector3.Lerp(transform.right, targetDirection, speed * Time.deltaTime);
             Rotate?.Invoke();
             yield return new WaitForSeconds(Time.fixedDeltaTime);
@@ -101,7 +97,7 @@ public class EnemyRotater : MonoBehaviour
 
     private IEnumerator LosingTarget()
     {
-        yield return new WaitForSeconds(_timeToLoseTarget);
+        yield return new WaitForSeconds(_settings.TimeToLoseTarget);
         losingTarget = null;
         GetRandomDirection();
     }

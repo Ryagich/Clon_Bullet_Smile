@@ -220,13 +220,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  <Target>k__BackingField: {fileID: 0}
-  <ShootPoint>k__BackingField: {fileID: 1223451349357833194}
-  <Radius>k__BackingField: 14
-  _angle: 160
-  _checkTime: 0.05
+  _settings: {fileID: 11400000, guid: 69b3b5c07cd46f84b8f54acd6ad9eb36, type: 2}
   _lineRenderer: {fileID: 4897039749915740081}
-  _lineCount: 10
 --- !u!114 &4993207442102806824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,11 +249,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _fov: {fileID: 7353936146020498369}
-  _offsetToRotation: 0
-  _timeToLoseTarget: 2
-  _holdTime: 0.5
-  _speed: 2
+  _settings: {fileID: 11400000, guid: 69b3b5c07cd46f84b8f54acd6ad9eb36, type: 2}
 --- !u!114 &3579026384785383055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,10 +316,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _fov: {fileID: 7353936146020498369}
   _layerMask:
     serializedVersion: 2
     m_Bits: 65
+  _shootPoint: {fileID: 1223451349357833194}
 --- !u!114 &5497467678665169842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,10 +350,7 @@ MonoBehaviour:
   StopShoot:
     m_PersistentCalls:
       m_Calls: []
-  _fov: {fileID: 7353936146020498369}
-  _angle: 25
-  _shootTime: 0.2
-  _checkTime: 0.2
+  _settings: {fileID: 11400000, guid: 69b3b5c07cd46f84b8f54acd6ad9eb36, type: 2}
 --- !u!114 &8992562400227983531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,10 +363,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be907fa39a554a548baae9a4b1405284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _settings: {fileID: 11400000, guid: 69b3b5c07cd46f84b8f54acd6ad9eb36, type: 2}
   _pref: {fileID: 3054134106822320694, guid: 6e2209aa091bdbe449fb3a0bcb65a29a, type: 3}
   _parent: {fileID: 1223451349357833194}
-  _speed: 5
-  _damage: 1
+  _speed: 20
   _bulletLiveTime: 3
 --- !u!33 &2676138663520536626
 MeshFilter:
@@ -494,19 +482,19 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 2.431075, y: -13.787308, z: 0}
-  - {x: 6.137196, y: -12.583117, z: 0}
-  - {x: 9.367828, y: -10.404027, z: 0}
-  - {x: 11.872673, y: -7.41887, z: 0}
-  - {x: 13.457664, y: -3.858923, z: 0}
-  - {x: 14, y: 0, z: 0}
-  - {x: 13.457664, y: 3.858923, z: 0}
-  - {x: 11.872673, y: 7.41887, z: 0}
-  - {x: 9.367828, y: 10.404027, z: 0}
-  - {x: 6.137196, y: 12.583117, z: 0}
-  - {x: 2.431075, y: 13.787308, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 25, y: -5.5, z: 0}
+  - {x: 27.431076, y: -19.287308, z: 0}
+  - {x: 31.137196, y: -18.083117, z: 0}
+  - {x: 34.36783, y: -15.904027, z: 0}
+  - {x: 36.872673, y: -12.91887, z: 0}
+  - {x: 38.457664, y: -9.358923, z: 0}
+  - {x: 39, y: -5.5, z: 0}
+  - {x: 38.457664, y: -1.641077, z: 0}
+  - {x: 36.872673, y: 1.91887, z: 0}
+  - {x: 34.36783, y: 4.904027, z: 0}
+  - {x: 31.137196, y: 7.0831165, z: 0}
+  - {x: 27.431076, y: 8.287308, z: 0}
+  - {x: 25, y: -5.5, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

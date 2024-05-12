@@ -6,13 +6,12 @@ using UnityEngine.Events;
 public class LaserShooter : MonoBehaviour
 {
     public UnityEvent EndLaser;
+    [SerializeField] private TurretSettings _settings;
     [SerializeField] private LineRenderer _lineRenderer;
-    [SerializeField, Min(0)] private int _damage = 1;
     [SerializeField] private Transform _parent;
-    [SerializeField] private EnemyFoV _fov;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private float _laserTime = .1f;
-    
+
     public void Shoot()
     {
         var parentPos = _parent.position;
@@ -20,7 +19,7 @@ public class LaserShooter : MonoBehaviour
         _lineRenderer.positionCount = 2;
         _lineRenderer.SetPosition(0, parentPos);
 
-        if (Physics.Raycast(parentPos, _parent.transform.right, out var hit, _fov.Radius, _layerMask))
+        if (Physics.Raycast(parentPos, _parent.transform.right, out var hit, _settings.Radius, _layerMask))
         {
             Debug.DrawRay(parentPos, _parent.transform.right, Color.red, 4);
             _lineRenderer.SetPosition(1, hit.point);
@@ -28,12 +27,12 @@ public class LaserShooter : MonoBehaviour
             var health = hit.transform.GetComponent<Health>();
             if (health)
             {
-                health.ChangeAmount(-_damage);
+                health.ChangeAmount(-_settings.Damage);
             }
         }
         else
         {
-            _lineRenderer.SetPosition(1, transform.position + _parent.transform.right.normalized * _fov.Radius);
+            _lineRenderer.SetPosition(1, transform.position + _parent.transform.right.normalized *  _settings.Radius);
         }
 
         StartCoroutine(PutOutLaser());

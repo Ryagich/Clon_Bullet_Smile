@@ -40,7 +40,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7086945846969604705}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -169,7 +169,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8206477738792770484}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1.5}
   m_ConstrainProportionsScale: 0
@@ -219,13 +219,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  <Target>k__BackingField: {fileID: 0}
-  <ShootPoint>k__BackingField: {fileID: 4788823327952440711}
-  <Radius>k__BackingField: 14
-  _angle: 160
-  _checkTime: 0.05
+  _settings: {fileID: 11400000, guid: 9ef27741d5fc2704cb50c195dd1d042d, type: 2}
   _lineRenderer: {fileID: 7082751869748535113}
-  _lineCount: 10
 --- !u!114 &1221612524945716653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,11 +248,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _fov: {fileID: 7265444250656327000}
-  _offsetToRotation: 0
-  _timeToLoseTarget: 2
-  _holdTime: 0.5
-  _speed: 2
+  _settings: {fileID: 11400000, guid: 9ef27741d5fc2704cb50c195dd1d042d, type: 2}
 --- !u!114 &4523396964571098007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,10 +315,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _fov: {fileID: 7265444250656327000}
   _layerMask:
     serializedVersion: 2
     m_Bits: 65
+  _shootPoint: {fileID: 4788823327952440711}
 --- !u!114 &8341630893205458193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,10 +361,7 @@ MonoBehaviour:
   StopShoot:
     m_PersistentCalls:
       m_Calls: []
-  _fov: {fileID: 7265444250656327000}
-  _angle: 25
-  _shootTime: 1
-  _checkTime: 0.2
+  _settings: {fileID: 11400000, guid: 9ef27741d5fc2704cb50c195dd1d042d, type: 2}
 --- !u!114 &8073051818021137374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,10 +389,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  _settings: {fileID: 11400000, guid: 9ef27741d5fc2704cb50c195dd1d042d, type: 2}
   _lineRenderer: {fileID: 7448016008112630529}
-  _damage: 3
   _parent: {fileID: 4788823327952440711}
-  _fov: {fileID: 7265444250656327000}
   _layerMask:
     serializedVersion: 2
     m_Bits: 65
@@ -523,19 +510,19 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 2.431075, y: -13.787308, z: 0}
-  - {x: 6.137196, y: -12.583117, z: 0}
-  - {x: 9.367828, y: -10.404027, z: 0}
-  - {x: 11.872673, y: -7.41887, z: 0}
-  - {x: 13.457664, y: -3.858923, z: 0}
-  - {x: 14, y: 0, z: 0}
-  - {x: 13.457664, y: 3.858923, z: 0}
-  - {x: 11.872673, y: 7.41887, z: 0}
-  - {x: 9.367828, y: 10.404027, z: 0}
-  - {x: 6.137196, y: 12.583117, z: 0}
-  - {x: 2.431075, y: 13.787308, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 25, y: -36.01, z: 0}
+  - {x: 27.431076, y: -49.797306, z: 0}
+  - {x: 31.137196, y: -48.593117, z: 0}
+  - {x: 34.36783, y: -46.414024, z: 0}
+  - {x: 36.872673, y: -43.428867, z: 0}
+  - {x: 38.457664, y: -39.86892, z: 0}
+  - {x: 39, y: -36.01, z: 0}
+  - {x: 38.457664, y: -32.151077, z: 0}
+  - {x: 36.872673, y: -28.59113, z: 0}
+  - {x: 34.36783, y: -25.605972, z: 0}
+  - {x: 31.137196, y: -23.426882, z: 0}
+  - {x: 27.431076, y: -22.22269, z: 0}
+  - {x: 25, y: -36.01, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

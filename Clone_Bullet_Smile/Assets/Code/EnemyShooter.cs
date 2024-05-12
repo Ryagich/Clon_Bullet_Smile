@@ -11,10 +11,7 @@ public class EnemyShooter : MonoBehaviour
     public UnityEvent Shoot;
     public UnityEvent StopShoot;
 
-    [SerializeField] private EnemyFoV _fov;
-    [SerializeField, Range(.0f, 360f)] private float _angle;
-    [SerializeField] private float _shootTime;
-    [SerializeField] private float _checkTime;
+    [SerializeField] private TurretSettings _settings;
 
     private bool shooting;
     private bool characterVisibility;
@@ -38,6 +35,11 @@ public class EnemyShooter : MonoBehaviour
     {
         while (true)
         {
+            if (!Target.Instance.Health.Alive)
+            {
+                StopShooting();
+                break;
+            }
             var targetInRadius = CheckFieldOfView();
             if (targetInRadius && characterVisibility)
             {
@@ -51,7 +53,7 @@ public class EnemyShooter : MonoBehaviour
                 StopShooting();
             }
 
-            yield return new WaitForSeconds(_checkTime);
+            yield return new WaitForSeconds(_settings.ShootCheckTime);
         }
     }
 
@@ -72,22 +74,22 @@ public class EnemyShooter : MonoBehaviour
         while (true)
         {
             Shoot?.Invoke();
-            yield return new WaitForSeconds(_shootTime);
+            yield return new WaitForSeconds(_settings.ShootTime);
         }
     }
 
     private bool CheckFieldOfView()
     {
-        var targetPos = _fov.Target.position;
+        var targetPos = Target.Instance.transform.position;
         var pos = transform.position;
         var distance = Vector3.Distance(targetPos, pos);
-        if (distance > _fov.Radius)
+        if (distance > _settings.Radius)
         {
             return false;
         }
 
         var dirToTarget = targetPos - pos;
-        var inFOVCondition = (Vector3.Angle(transform.right, dirToTarget) < _angle / 2);
+        var inFOVCondition = (Vector3.Angle(transform.right, dirToTarget) < _settings.ShootAngle / 2);
         if (!inFOVCondition)
         {
             return false;
@@ -95,16 +97,4 @@ public class EnemyShooter : MonoBehaviour
 
         return true;
     }
-
-    // private void OnDrawGizmos()
-    // {
-    //     Handles.color = Color.white;
-    //     var pos = transform.position;
-    //     var viewAngleA = new Vector3(Mathf.Sin(-_angle / 2 * Mathf.Deg2Rad),  Mathf.Cos(-_angle / 2 * Mathf.Deg2Rad),0);
-    //     var viewAngleB = new Vector3(Mathf.Sin(_angle / 2 * Mathf.Deg2Rad), Mathf.Cos(_angle / 2 * Mathf.Deg2Rad),0 );
-    //     
-    //     Handles.DrawWireArc(pos, -Vector3.forward, viewAngleA, _angle, _fov.Radius);
-    //     Handles.DrawLine(pos, pos + viewAngleA * _fov.Radius);
-    //     Handles.DrawLine(pos, pos + viewAngleB * _fov.Radius);
-    // }
 }

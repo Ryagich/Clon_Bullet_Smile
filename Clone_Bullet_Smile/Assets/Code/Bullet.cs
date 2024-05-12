@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
         lastPos = transform.position;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         transform.Translate(Vector3.right * (speed * Time.deltaTime));
         if (Physics.Linecast(lastPos, transform.position, out var hit, _targetMask))
@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
             var health = hit.transform.GetComponent<Health>();
             if (health)
             {
-                health.ChangeAmount(-damage);
+                health.ChangeAmount(damage);
             }
             Destroy(gameObject);
         }

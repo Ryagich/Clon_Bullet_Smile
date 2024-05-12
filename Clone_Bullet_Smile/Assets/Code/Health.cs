@@ -22,13 +22,12 @@ public class Health : MonoBehaviour
     public void ChangeAmount(int value)
     {
         amount = Mathf.Clamp(amount + value, 0, _amount);
-        if (amount <= 0)
+        if (amount <= 0 && Alive)
         {
             Alive = false;
             Died?.Invoke();
         }
 
-        Debug.Log(amount);
         AmountChanged?.Invoke(amount);
     }
 }

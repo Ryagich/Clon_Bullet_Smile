@@ -12,7 +12,7 @@ public class BallTrajectory : MonoBehaviour
     
     private Scene simulationScene;
     private PhysicsScene physicsScene;
-    private bool state = false;
+    private bool state;
 
     void Start()
     {

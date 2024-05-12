@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62ce1f3a612da54284a44c9949b11eb, type: 3}
+  m_Name: LazerTurretSettings
+  m_EditorClassIdentifier: 
+  <Radius>k__BackingField: 14
+  <FieldAngle>k__BackingField: 160
+  <FOVCheckTime>k__BackingField: 0.05
+  <FOVLineCount>k__BackingField: 10
+  <OffsetToRotation>k__BackingField: 0
+  <TimeToLoseTarget>k__BackingField: 2
+  <RotateHoldTime>k__BackingField: 0.5
+  <RotateSpeed>k__BackingField: 2
+  <ShootAngle>k__BackingField: 10
+  <ShootTime>k__BackingField: 1
+  <ShootCheckTime>k__BackingField: 0.2
+  <Damage>k__BackingField: 3
